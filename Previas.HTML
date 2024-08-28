@@ -1,0 +1,79 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Orden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Consulta de Orden</h2>
+        <label for="orderNumber">Ingrese su número de Orden</label>
+        <input type="text" id="orderNumber" placeholder="23012500">
+        <button onclick="searchOrder()">Buscar</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function searchOrder() {
+            var orderNumber = document.getElementById("orderNumber").value;
+            var resultText = "";
+            var nic = "";
+            var status = "";
+
+            // Lógica para determinar los resultados según el número ingresado
+            if (orderNumber === "23012500") {
+                resultText = "No procede contratar servicio nuevo a 240v debe de presentar documentación de la OIA ya que es para negocio instalación interna bajo norma caja térmica con 2 circuitos 1 doble y un sencillo externa bajo norma md quedará en pared frontal uso comercial con pie de amigo para recibir la acometida md contiguo 96859787, punto de conexión a 25 metros aproximadamente, cliente molesto porque se le solicitó la OIA, ejecutó CLSHNTE010 SANCHEZ Y MAGAÑA";
+                nic = "5919068";
+                status = "En campo";
+            } else {
+                resultText = "No se encontró información para el número de orden ingresado.";
+                nic = "No contratado";
+                status = "Pendiente";
+            }
+
+            document.getElementById("result").innerHTML = `
+                <p><strong>Resultado:</strong> ${resultText}</p>
+                <p><strong>Contratado:</strong> ${nic !== "No contratado" ? "Sí" : "No"}</p>
+                <p><strong>NIC:</strong> ${nic}</p>
+                <p><strong>Estado:</strong> ${status}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
